@@ -1,6 +1,6 @@
 # Repositorio del Curso [Machine Learning de A a la Z: R y Python para Data Science](https://www.udemy.com/draft/2241862/?couponCode=GITHUB_PROMO_JB)
-## Creado por  Kirill Eremenko y Hadelin de Ponteves
-## Traducido al español por Juan Gabriel Gomila Salas
+## Creado por [Kirill Eremenko](https://www.udemy.com/user/kirilleremenko/) y [Hadelin de Ponteves](https://www.udemy.com/user/hadelin-de-ponteves/)
+## Traducido al español por [Juan Gabriel Gomila Salas](https://www.udemy.com/user/juangabriel2)
 
 
 ¿Estás interesado en conocer a fondo el mundo del Machine Learning? Entonces este curso está diseñado especialmente para ti!!
@@ -35,7 +35,9 @@ Además, el curso está relleno de ejercicios prácticos basados en ejemplos de 
 
 Y como bonus, este curso incluye todo el código en Python y R para que lo descargues y uses en tus propios proyectos.
 
-Lo que aprenderás
+Puedes apuntarte al curso de Machine Learning con un descuento del 90% de su precio original [desde aquí](https://www.udemy.com/draft/2241862/?couponCode=GITHUB_PROMO_JB)
+
+**Lo que aprenderás**
 
 Dominar el Machine Learning con R y con Python.
 Tener intuición en la mayoría de modelos de Machine Learning.
@@ -48,10 +50,12 @@ Dominar aspectos específicos como por ejemplo Reinforcement Learning, NLP o Dee
 Conocer las técnicas más avanzadas como la reducción de la dimensionalidad.
 Saber qué modelo de Machine Learning usar para cada tipo de problema.
 Crear toda una librería de modelos de Machine Learning y saber cómo combinarlos para resolver cualquier problema.
-¿Hay requisitos para crear un curso?
+
+**¿Hay requisitos para seguir correctamente el curso?**
 
 Con el nivel de matemáticas de secundaria y bachillerato es suficiente.
-¿Para quién es este curso?
+
+**¿Para quién es este curso?**
 
 Cualquier estudiante que esté interesado en el Machine Learning.
 Estudiantes con nivel de matemáticas de bachillerato que quieren iniciarse en Machine Learning.
