@@ -62,8 +62,9 @@ plt.ylabel("Sueldo (en $)")
 plt.show()
 
 # Predicción de nuestros modelos
-lin_reg.predict(6.5)
-lin_reg_2.predict(poly_reg.fit_transform(6.5))
+# Se ha añadido la sintaxis de doble corchete necesaria para hacer la predicción en las últimas versiones de Python (3.7+)
+lin_reg.predict([[6.5]])
+lin_reg_2.predict(poly_reg.fit_transform([[6.5]]))
 
 
 

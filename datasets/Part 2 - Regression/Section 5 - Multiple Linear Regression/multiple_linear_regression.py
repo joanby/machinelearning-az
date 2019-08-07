@@ -53,22 +53,24 @@ import statsmodels.formula.api as sm
 X = np.append(arr = np.ones((50,1)).astype(int), values = X, axis = 1)
 SL = 0.05
 
+#Se ha añadido el modificador .tolist() al X_opt para adaptarse a Python 3.7
+
 X_opt = X[:, [0, 1, 2, 3, 4, 5]]
-regression_OLS = sm.OLS(endog = y, exog = X_opt).fit()
+regression_OLS = sm.OLS(endog = y, exog = X_opt.tolist()).fit()
 regression_OLS.summary()
 
 X_opt = X[:, [0, 1, 3, 4, 5]]
-regression_OLS = sm.OLS(endog = y, exog = X_opt).fit()
+regression_OLS = sm.OLS(endog = y, exog = X_opt.tolist()).fit()
 regression_OLS.summary()
 
 X_opt = X[:, [0, 3, 4, 5]]
-regression_OLS = sm.OLS(endog = y, exog = X_opt).fit()
+regression_OLS = sm.OLS(endog = y, exog = X_opt.tolist()).fit()
 regression_OLS.summary()
 
 X_opt = X[:, [0, 3, 5]]
-regression_OLS = sm.OLS(endog = y, exog = X_opt).fit()
+regression_OLS = sm.OLS(endog = y, exog = X_opt.tolist()).fit()
 regression_OLS.summary()
 
 X_opt = X[:, [0, 3]]
-regression_OLS = sm.OLS(endog = y, exog = X_opt).fit()
+regression_OLS = sm.OLS(endog = y, exog = X_opt.tolist()).fit()
 regression_OLS.summary()
