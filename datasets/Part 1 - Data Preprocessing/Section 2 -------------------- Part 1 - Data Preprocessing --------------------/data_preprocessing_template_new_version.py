@@ -45,10 +45,10 @@ y = labelencoder_y.fit_transform(y)
 
 # Dividir el data set en conjunto de entrenamiento y en conjunto de testing
 from sklearn.model_selection import train_test_split
-x_train, x_test, y_train, y_test = train_test_split(X, y,test_size = 0.2, random_state = 0)
+X_train, X_test, y_train, y_test = train_test_split(X, y,test_size = 0.2, random_state = 0)
 
 # Escalado de variables
 from sklearn.preprocessing import StandardScaler
 sc_X = StandardScaler()
-x_train = sc_X.fit_transform(x_train)
-x_test = sc_X.transform(x_test)
+X_train = sc_X.fit_transform(X_train)
+X_test = sc_X.transform(X_test)
