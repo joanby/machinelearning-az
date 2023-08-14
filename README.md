@@ -1,7 +1,15 @@
-# Repositorio del Curso [Machine Learning de A a la Z: R y Python para Data Science](https://www.udemy.com/draft/2241862/?couponCode=GITHUB_PROMO_JB)
+# Repositorio del Curso [Machine Learning de A a la Z: R y Python para Data Science](https://cursos.frogamesformacion.com/courses/machine-learning-az)
 ## Creado por [Kirill Eremenko](https://www.udemy.com/user/kirilleremenko/) y [Hadelin de Ponteves](https://www.udemy.com/user/hadelin-de-ponteves/)
 ## Traducido al español por [Juan Gabriel Gomila Salas](https://www.udemy.com/user/juangabriel2)
 
+# Actualizado en Agosto de 2023
+
+En la estructura del proyecto encontrarás tres carpetas:
+- Additional Materials: con las transparencias y slides usados en las clases de teoría del curso
+- Original: los ficheros de Python y R originales del curso, con los que se grabaron las clases
+- Update: ficheros de Python, Jupyter Notebook y de R actualizados en Agosto de 2023.
+
+---
 
 ¿Estás interesado en conocer a fondo el mundo del Machine Learning? Entonces este curso está diseñado especialmente para ti!!
 
