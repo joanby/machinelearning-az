@@ -36,7 +36,7 @@ Además, el curso está repleto de ejercicios prácticos basados en ejemplos de 
 
 Y como bonus, este curso incluye todo el código en Python y R para que lo descargues y uses en tus propios proyectos.
 
-Puedes apuntarte al curso de Machine Learning con un descuento del 90% de su precio original [desde aquí](https://www.udemy.com/draft/2241862/?couponCode=GITHUB_PROMO_JB)
+Puedes apuntarte al curso de Machine Learning de la A a la Z con descuento [desde aquí](https://cursos.frogamesformacion.com/courses/machine-learning-az)
 
 ### Lo que aprenderás
 
