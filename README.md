@@ -9,6 +9,8 @@ En la estructura del proyecto encontrarás tres carpetas:
 - Original: los ficheros de Python y R originales del curso, con los que se grabaron las clases
 - Update: ficheros de Python, Jupyter Notebook y de R actualizados en Agosto de 2023.
 
+De este modo podrás combinar lo que ves en los vídeos con el código en la última versión para siempre tener el curso 100% actualizado. También te hemos preparado el código directamente en Google Colab por si prefieres seguirlo online sin necesidad de instalar Python en tu ordenador. Puedes acceder a la carpeta de materiales de Colab [desde aquí](https://drive.google.com/drive/folders/1McMhzMVDRiZJI_jLjqqU1rBeHpwHq--A?usp=share_link)
+
 ---
 
 ¿Estás interesado en conocer a fondo el mundo del Machine Learning? Entonces este curso está diseñado especialmente para ti!!
