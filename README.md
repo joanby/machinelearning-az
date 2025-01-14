@@ -1,70 +1,97 @@
-# Repositorio del Curso [Machine Learning de A a la Z: R y Python para Data Science](https://cursos.frogamesformacion.com/courses/machine-learning-az)
-## Creado por [Kirill Eremenko](https://www.udemy.com/user/kirilleremenko/) y [Hadelin de Ponteves](https://www.udemy.com/user/hadelin-de-ponteves/)
-## Traducido al español por [Juan Gabriel Gomila Salas](https://www.udemy.com/user/juangabriel2)
+# 🚀 Repositorio del Curso: **[Machine Learning de A a la Z: R y Python para Data Science](https://cursos.frogamesformacion.com/courses/machine-learning-az)**  
+**Creado por** [Kirill Eremenko](https://www.udemy.com/user/kirilleremenko/) y [Hadelin de Ponteves](https://www.udemy.com/user/hadelin-de-ponteves/)  
+**Traducido al español por** [Juan Gabriel Gomila Salas](https://www.udemy.com/user/juangabriel2)  
 
-# Actualizado en Agosto de 2023
-
-En la estructura del proyecto encontrarás tres carpetas:
-- Additional Materials: con las transparencias y slides usados en las clases de teoría del curso
-- Original: los ficheros de Python y R originales del curso, con los que se grabaron las clases
-- Update: ficheros de Python, Jupyter Notebook y de R actualizados en Agosto de 2023.
-
-De este modo podrás combinar lo que ves en los vídeos con el código en la última versión para siempre tener el curso 100% actualizado. También te hemos preparado el código directamente en Google Colab por si prefieres seguirlo online sin necesidad de instalar Python en tu ordenador. Puedes acceder a la carpeta de materiales de Colab [desde aquí](https://drive.google.com/drive/folders/1McMhzMVDRiZJI_jLjqqU1rBeHpwHq--A?usp=share_link)
+**Última actualización**: Enero de 2025
 
 ---
 
-¿Estás interesado en conocer a fondo el mundo del Machine Learning? Entonces este curso está diseñado especialmente para ti!!
+## 📂 Estructura del Proyecto
 
-Este curso ha sido diseñado por Data Scientists profesionales para compartir nuestro conocimiento y ayudarte a aprender la teoría compleja, los algoritmos y librerías de programación de un modo fácil y sencillo.
+En este repositorio encontrarás tres carpetas principales que te ayudarán a seguir el curso de la mejor manera:
 
-En él te guiaremos paso a paso en el mundo del Machine Learning. Con cada clase desarrollarás nuevas habilidades y mejorarás tus conocimientos de este complicado y lucrativa sub rama del Data Science.
+1. **Additional Materials**: Transparencias y slides utilizados en las clases de teoría del curso.
+2. **Original**: Los ficheros originales en Python y R con los que se grabaron las clases del curso.
+3. **Update**: Los ficheros actualizados en **Python**, **Jupyter Notebook** y **R**, con mejoras realizadas en agosto de 2023. ¡Aquí está el código más reciente!
 
-### Temario del curso
+---
 
-Este curso es divertido y ameno pero al mismo tiempo todo un reto pues tenemos mucho de Machine Learning por aprender. Lo hemos estructurado del siguiente modo:
+## 🚀 **¿Cómo aprovechar este repositorio?**
 
-- Parte 1 - Preprocesamiento de datos
-- Parte 2 - Regresión: Regresión Lineal Simple, Regresión Lineal Múltiple, Regresión Polinomial, SVR, Regresión en Árboles de Decisión y Regresión con Bosques Aleatorios
-- Parte 3 - Clasificación: Regresión Logística, K-NN, SVM, Kernel SVM, Naive Bayes, Clasificación con Árboles de Decisión y Clasificación con Bosques Aleatorios
-- Parte 4 - Clustering: K-Means,  Clustering Jerárquico
-- Parte 5 - Aprendizaje por Reglas de Asociación: Apriori, Eclat
-- Parte 6 - Reinforcement Learning: Límite de Confianza Superior, Muestreo Thompson
-- Parte 7 - Procesamiento Natural del Lenguaje: Modelo de Bag-of-words  y algoritmos de NLP
-- Parte 8 - Deep Learning: Redes Neuronales Artificiales y Redes Neuronales Convolucionales
-- Parte 9 - Reducción de la dimensión: ACP, LDA, Kernel ACP
-- Parte 10 - Selección de Modelos & Boosting: k-fold Cross Validation, Ajuste de Parámetros, Grid Search, XGBoost
+Puedes combinar lo aprendido en los videos con el **código actualizado** para asegurar que estás trabajando siempre con las versiones más recientes. Además, si prefieres **trabajar online**, hemos preparado el código directamente en **Google Colab** para que puedas seguir el curso sin necesidad de instalar Python en tu ordenador.
 
-Además, el curso está repleto de ejercicios prácticos basados en ejemplos de la vida real, de modo que no solo aprenderás teoría, si no también pondrás en práctica tus propios modelos con ejemplos guiados.
+👉 **Accede a la carpeta de materiales de Colab [aquí](https://drive.google.com/drive/folders/1McMhzMVDRiZJI_jLjqqU1rBeHpwHq--A?usp=share_link)**
 
-Y como bonus, este curso incluye todo el código en Python y R para que lo descargues y uses en tus propios proyectos.
+---
 
-Puedes apuntarte al curso de Machine Learning de la A a la Z con descuento [desde aquí](https://cursos.frogamesformacion.com/courses/machine-learning-az)
+## 📚 **Temario del Curso**
 
-### Lo que aprenderás
+Este curso está diseñado para llevarte de la teoría a la práctica, y cubre una amplia gama de temas esenciales de **Machine Learning**. Aquí tienes un resumen de los módulos:
 
-- Dominar el Machine Learning con R y con Python.
-- Tener intuición en la mayoría de modelos de Machine Learning.
-- Hacer predicciones precisas y acertadas.
-- Crear unos análisis elaborados.
-- Crear modelos de Machine Learning robustos y consistentes.
-- Crear valor añadido a tu propio negocio.
-- Utilizar el Machine Learning para cuestiones personales.
-- Dominar aspectos específicos como por ejemplo Reinforcement Learning, NLP o Deep Learning
-- Conocer las técnicas más avanzadas como la reducción de la dimensionalidad.
-- Saber qué modelo de Machine Learning usar para cada tipo de problema.
-- Crear toda una librería de modelos de Machine Learning y saber cómo combinarlos para resolver cualquier problema.
+### 1️⃣ **Preprocesamiento de Datos**
+### 2️⃣ **Regresión**  
+- Regresión Lineal Simple, Múltiple, Polinomial  
+- SVR, Árboles de Decisión, Bosques Aleatorios
 
-### ¿Hay requisitos para seguir correctamente el curso?
+### 3️⃣ **Clasificación**  
+- Regresión Logística, K-NN, SVM  
+- Naive Bayes, Árboles de Decisión, Bosques Aleatorios
 
-- Con el nivel de matemáticas de secundaria y bachillerato es suficiente.
+### 4️⃣ **Clustering**  
+- K-Means, Clustering Jerárquico
 
-### ¿Para quién es este curso?
+### 5️⃣ **Aprendizaje por Reglas de Asociación**  
+- Apriori, Eclat
 
-- Cualquier estudiante que esté interesado en el Machine Learning.
-- Estudiantes con nivel de matemáticas de bachillerato que quieren iniciarse en Machine Learning.
-- Estudiantes de nivel intermedio con conocimientos básicos de Machine Learning, incluyendo algoritmos clásicos de regresión lineal o logística, pero que quieren aprender más y explorar los diferentes campos del Machine Learning.
-- Estudiantes que no se sienten cómodos programando pero se interesan por el Machine Learning y quieren aplicar las técnicas al análisis de data sets.
-- Universitarios que quieren iniciarse en el mundo del Data Science.
-- Cualquier analista de datos que quiera mejorar sus habilidades en Machine Learning.
-- Personas que no están satisfechas con su trabajo y quieren convertirse en Data Scientist.
-- Cualquier persona que quiera añadir valor a su empresa con el poder del Machine Learning.
+### 6️⃣ **Reinforcement Learning**  
+- Límite de Confianza Superior, Muestreo Thompson
+
+### 7️⃣ **Procesamiento Natural del Lenguaje (NLP)**  
+- Modelo de Bag-of-Words, algoritmos de NLP
+
+### 8️⃣ **Deep Learning**  
+- Redes Neuronales Artificiales y Convolucionales
+
+### 9️⃣ **Reducción de la Dimensión**  
+- ACP, LDA, Kernel ACP
+
+### 🔟 **Selección de Modelos & Boosting**  
+- k-fold Cross Validation, Ajuste de Parámetros, Grid Search, XGBoost
+
+---
+
+### 🧑‍💻 **Lo que aprenderás en este curso**  
+- **Dominar Machine Learning** con Python y R.
+- **Crear modelos predictivos robustos** y generar análisis precisos.
+- **Aplicar técnicas avanzadas** como **Reinforcement Learning**, **NLP** y **Deep Learning**.
+- **Crear valor en tu negocio** mediante el uso de **Modelos de Machine Learning**.
+- **Desarrollar una librería de modelos** para resolver problemas de Data Science.
+
+---
+
+## ⚡ **¿Para quién es este curso?**
+
+Este curso está dirigido a todos aquellos interesados en aprender **Machine Learning**. Ideal para:  
+- **Principiantes**: Si tienes conocimientos básicos de matemáticas (nivel secundaria y bachillerato).
+- **Estudiantes de Data Science** que quieran profundizar en el mundo del Machine Learning.
+- **Analistas de Datos** que busquen mejorar sus habilidades en programación y ML.
+- **Profesionales** que deseen mejorar sus habilidades analíticas y crear valor en sus empresas.
+
+---
+
+## 🎯 **¿Qué requisitos necesitas?**  
+No es necesario ser un experto en programación, solo es recomendable tener conocimientos básicos de matemáticas a nivel de **secundaria o bachillerato**.
+
+---
+
+## 🎁 **¡Bonus!**  
+Este curso incluye **todo el código en Python y R** que puedes descargar y aplicar a tus propios proyectos, así como ejemplos prácticos basados en datos reales. 
+
+---
+
+## 🎥 **¿Listo para aprender Machine Learning de manera fácil y divertida?**  
+Apúntate al curso con **descuento exclusivo** [desde aquí](https://cursos.frogamesformacion.com/courses/machine-learning-az) y empieza a aprender hoy mismo.
+
+---
+
+¡Esperamos verte pronto en el curso! Si tienes dudas o preguntas, no dudes en contactar con nosotros. ¡Estamos aquí para ayudarte! 💡
