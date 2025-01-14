@@ -1,102 +1,123 @@
-# Artificial Neural Network
+# Red Neuronal Artificial (ANN)
 
-# Importing the libraries
+"""
+Explicación de los pasos:
+Preprocesamiento de datos:
+Se realiza una codificación de variables categóricas para la columna "Gender" mediante LabelEncoder.
+Se realiza una codificación One Hot para la columna "Geography" para convertir las categorías en columnas binarias.
+Se divide el conjunto de datos en un conjunto de entrenamiento (80%) y prueba (20%).
+Se aplica un escalado de las características con StandardScaler para normalizar los valores.
+Construcción de la ANN:
+Se crea una red neuronal con Keras. La estructura tiene:
+Capa de entrada y primera capa oculta con 6 unidades y función de activación ReLU.
+Una segunda capa oculta con 6 unidades y ReLU.
+Capa de salida con una unidad y función de activación sigmoid para obtener una salida binaria (0 o 1).
+Entrenamiento del modelo:
+El modelo es entrenado con el optimizador Adam y la función de pérdida binary_crossentropy, ideal para tareas de clasificación binaria.
+Se entrena durante 100 épocas con un batch size de 32.
+Predicción y Evaluación:
+Se predice si un cliente específico dejará el banco.
+Se evalúa el rendimiento del modelo usando la matriz de confusión y la precisión.
+"""
+
+# Importación de las bibliotecas necesarias
 import numpy as np
 import pandas as pd
 import tensorflow as tf
-tf.__version__
+tf.__version__  # Verificar la versión de TensorFlow
 
-# Part 1 - Data Preprocessing
+# Parte 1 - Preprocesamiento de los Datos
 
-# Importing the dataset
+# Importación del dataset
 dataset = pd.read_csv('Churn_Modelling.csv')
-X = dataset.iloc[:, 3:-1].values
-y = dataset.iloc[:, -1].values
+X = dataset.iloc[:, 3:-1].values  # Tomar las características
+y = dataset.iloc[:, -1].values  # Tomar la etiqueta (si el cliente se fue o no)
 print(X)
 print(y)
 
-# Encoding categorical data
-# Label Encoding the "Gender" column
+# Codificación de los datos categóricos
+# Codificación de la columna "Gender" (Género) con LabelEncoder
 from sklearn.preprocessing import LabelEncoder
 le = LabelEncoder()
-X[:, 2] = le.fit_transform(X[:, 2])
+X[:, 2] = le.fit_transform(X[:, 2])  # Transformar los valores de la columna "Gender"
 print(X)
-# One Hot Encoding the "Geography" column
+
+# Codificación One Hot para la columna "Geography" (Geografía)
 from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import OneHotEncoder
 ct = ColumnTransformer(transformers=[('encoder', OneHotEncoder(), [1])], remainder='passthrough')
-X = np.array(ct.fit_transform(X))
+X = np.array(ct.fit_transform(X))  # Aplicar la codificación one-hot para "Geography"
 print(X)
 
-# Splitting the dataset into the Training set and Test set
+# Dividir el dataset en conjunto de entrenamiento y prueba
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
 
-# Feature Scaling
+# Escalado de las características
 from sklearn.preprocessing import StandardScaler
 sc = StandardScaler()
-X_train = sc.fit_transform(X_train)
-X_test = sc.transform(X_test)
+X_train = sc.fit_transform(X_train)  # Escalar el conjunto de entrenamiento
+X_test = sc.transform(X_test)  # Escalar el conjunto de prueba
 
-# Part 2 - Building the ANN
+# Parte 2 - Construcción de la Red Neuronal Artificial (ANN)
 
-# Initializing the ANN
+# Inicializando la red neuronal (ANN)
 ann = tf.keras.models.Sequential()
 
-# Adding the input layer and the first hidden layer
+# Añadir la capa de entrada y la primera capa oculta
 ann.add(tf.keras.layers.Dense(units=6, activation='relu'))
 
-# Adding the second hidden layer
+# Añadir la segunda capa oculta
 ann.add(tf.keras.layers.Dense(units=6, activation='relu'))
 
-# Adding the output layer
+# Añadir la capa de salida
 ann.add(tf.keras.layers.Dense(units=1, activation='sigmoid'))
 
-# Part 3 - Training the ANN
+# Parte 3 - Entrenamiento de la Red Neuronal Artificial (ANN)
 
-# Compiling the ANN
+# Compilando la red neuronal
 ann.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])
 
-# Training the ANN on the Training set
+# Entrenando la red neuronal con el conjunto de entrenamiento
 ann.fit(X_train, y_train, batch_size = 32, epochs = 100)
 
-# Part 4 - Making the predictions and evaluating the model
+# Parte 4 - Predicción y Evaluación del Modelo
 
-# Predicting the result of a single observation
+# Predicción del resultado para una observación individual
 
 """
-Homework:
-Use our ANN model to predict if the customer with the following informations will leave the bank: 
-Geography: France
-Credit Score: 600
-Gender: Male
-Age: 40 years old
-Tenure: 3 years
-Balance: $ 60000
-Number of Products: 2
-Does this customer have a credit card? Yes
-Is this customer an Active Member: Yes
-Estimated Salary: $ 50000
-So, should we say goodbye to that customer?
+Tarea:
+Usar el modelo ANN para predecir si el cliente con la siguiente información dejará el banco: 
+- Geografía: Francia
+- Puntuación crediticia: 600
+- Género: Masculino
+- Edad: 40 años
+- Tenencia: 3 años
+- Saldo: $ 60000
+- Número de productos: 2
+- ¿Este cliente tiene tarjeta de crédito? Sí
+- ¿Es este cliente miembro activo? Sí
+- Salario estimado: $ 50000
+¿Debemos despedir a este cliente?
 
-Solution:
+Solución:
 """
 
 print(ann.predict(sc.transform([[1, 0, 0, 600, 1, 40, 3, 60000, 2, 1, 1, 50000]])) > 0.5)
 
 """
-Therefore, our ANN model predicts that this customer stays in the bank!
-Important note 1: Notice that the values of the features were all input in a double pair of square brackets. That's because the "predict" method always expects a 2D array as the format of its inputs. And putting our values into a double pair of square brackets makes the input exactly a 2D array.
-Important note 2: Notice also that the "France" country was not input as a string in the last column but as "1, 0, 0" in the first three columns. That's because of course the predict method expects the one-hot-encoded values of the state, and as we see in the first row of the matrix of features X, "France" was encoded as "1, 0, 0". And be careful to include these values in the first three columns, because the dummy variables are always created in the first columns.
+Por lo tanto, nuestro modelo ANN predice que este cliente se queda en el banco.
+Nota importante 1: Observa que los valores de las características se introdujeron en un par de corchetes dobles. Esto se debe a que el método "predict" siempre espera una matriz 2D como formato de entrada.
+Nota importante 2: Además, observa que el país "Francia" no se introdujo como una cadena en la última columna, sino como "1, 0, 0" en las primeras tres columnas. Esto se debe a que el método predict espera los valores codificados con one-hot de la geografía.
 """
 
-# Predicting the Test set results
+# Predicción de los resultados para el conjunto de prueba
 y_pred = ann.predict(X_test)
-y_pred = (y_pred > 0.5)
-print(np.concatenate((y_pred.reshape(len(y_pred),1), y_test.reshape(len(y_test),1)),1))
+y_pred = (y_pred > 0.5)  # Convertir las predicciones a 0 o 1
+print(np.concatenate((y_pred.reshape(len(y_pred), 1), y_test.reshape(len(y_test), 1)), 1))  # Comparar predicciones con los valores reales
 
-# Making the Confusion Matrix
+# Crear la matriz de confusión
 from sklearn.metrics import confusion_matrix, accuracy_score
-cm = confusion_matrix(y_test, y_pred)
-print(cm)
-accuracy_score(y_test, y_pred)
+cm = confusion_matrix(y_test, y_pred)  # Generar la matriz de confusión
+print(cm)  # Mostrar la matriz de confusión
+accuracy_score(y_test, y_pred)  # Calcular la precisión del modelo
