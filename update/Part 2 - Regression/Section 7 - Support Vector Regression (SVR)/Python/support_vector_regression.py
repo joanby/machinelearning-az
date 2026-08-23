@@ -49,7 +49,7 @@ plt.ylabel('Salario')
 plt.show()  # Muestra el gráfico
 
 # Visualización de los resultados del SVR con mayor resolución para una curva más suave
-X_grid = np.arange(min(sc_X.inverse_transform(X)), max(sc_X.inverse_transform(X)), 0.1)  # Rango de valores para una curva más suave
+X_grid = np.arange(sc_X.inverse_transform(X).min(), sc_X.inverse_transform(X).max(), 0.1)  # Rango de valores para una curva más suave
 X_grid = X_grid.reshape((len(X_grid), 1))  # Reshape para adaptarlo al modelo
 plt.scatter(sc_X.inverse_transform(X), sc_y.inverse_transform(y), color='red')  # Puntos de datos reales
 plt.plot(X_grid, sc_y.inverse_transform(regressor.predict(sc_X.transform(X_grid)).reshape(-1, 1)), color='blue')  # Curva ajustada con mayor resolución

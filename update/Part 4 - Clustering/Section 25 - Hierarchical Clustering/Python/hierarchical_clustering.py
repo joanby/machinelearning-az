@@ -24,7 +24,7 @@ plt.ylabel('Distancias Euclidianas')  # Etiqueta del eje Y
 plt.show()  # Mostrar el dendrograma
 
 # Entrenando el modelo de Clustering Jerárquico en el dataset
-hc = AgglomerativeClustering(n_clusters = 5, affinity = 'euclidean', linkage = 'ward')  # Usamos 'ward' para la fusión de clusters
+hc = AgglomerativeClustering(n_clusters = 5, metric = 'euclidean', linkage = 'ward')  # Usamos 'ward' para la fusión de clusters
 y_hc = hc.fit_predict(X)  # Ajustamos el modelo y predecimos el cluster al que pertenece cada punto
 
 # Visualizando los clusters

@@ -26,7 +26,7 @@ resultado = regressor.predict([[6.5]])  # Predice el salario para el nivel de pu
 print(f"Predicción del salario para el puesto 6.5: {resultado}")
 
 # Visualización de los resultados de la Regresión con Bosque Aleatorio (con mayor resolución)
-X_grid = np.arange(min(X), max(X), 0.01)  # Rango de valores para obtener una curva más suave
+X_grid = np.arange(X.min(), X.max(), 0.01)  # Rango de valores para obtener una curva más suave
 X_grid = X_grid.reshape((len(X_grid), 1))  # Reshape para adaptarlo al modelo
 plt.scatter(X, y, color='red')  # Muestra los puntos de los datos reales
 plt.plot(X_grid, regressor.predict(X_grid), color='blue')  # Curva ajustada por el bosque aleatorio

@@ -46,7 +46,7 @@ plt.ylabel('Salario')
 plt.show()  # Muestra el gráfico
 
 # Visualización de los resultados de la Regresión Polinómica con mayor resolución para una curva más suave
-X_grid = np.arange(min(X), max(X), 0.1)  # Crear un rango de valores para un gráfico más suave
+X_grid = np.arange(X.min(), X.max(), 0.1)  # Crear un rango de valores para un gráfico más suave
 X_grid = X_grid.reshape((len(X_grid), 1))  # Reshape para adaptarlo al modelo
 plt.scatter(X, y, color='red')  # Muestra los puntos de datos
 plt.plot(X_grid, lin_reg_2.predict(poly_reg.fit_transform(X_grid)), color='blue')  # Curva polinómica suave

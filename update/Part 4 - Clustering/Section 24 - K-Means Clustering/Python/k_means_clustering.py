@@ -19,7 +19,7 @@ X = dataset.iloc[:, [3, 4]].values  # Seleccionamos las columnas de Ingreso Anua
 # Usando el método del codo (Elbow Method) para encontrar el número óptimo de clusters
 wcss = []  # Lista para almacenar el valor de la suma de cuadrados dentro de los clusters (WCSS)
 for i in range(1, 11):  # Probamos con 1 a 10 clusters
-    kmeans = KMeans(n_clusters = i, init = 'k-means++', random_state = 42)  # Inicialización con el método 'k-means++' para mejorar la convergencia
+    kmeans = KMeans(n_clusters = i, init = 'k-means++', random_state = 42, n_init = 10)  # Inicialización con el método 'k-means++' para mejorar la convergencia
     kmeans.fit(X)  # Ajustamos el modelo al conjunto de datos
     wcss.append(kmeans.inertia_)  # Almacenamos la inercia (WCSS) para cada número de clusters
 
@@ -31,7 +31,7 @@ plt.ylabel('WCSS')
 plt.show()  # Muestra el gráfico
 
 # Entrenando el modelo K-Means con 5 clusters (según lo indicado por el gráfico del codo)
-kmeans = KMeans(n_clusters = 5, init = 'k-means++', random_state = 42)
+kmeans = KMeans(n_clusters = 5, init = 'k-means++', random_state = 42, n_init = 10)
 y_kmeans = kmeans.fit_predict(X)  # Ajustamos el modelo y predecimos el cluster de cada punto
 
 # Visualización de los clusters

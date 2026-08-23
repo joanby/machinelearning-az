@@ -3,7 +3,7 @@
 """
 Explicación de los pasos:
 Preprocesamiento de los Datos:
-Se utiliza ImageDataGenerator para aplicar transformaciones como escalado, rotación y volteo horizontal a las imágenes del conjunto de entrenamiento. Esto mejora la capacidad de generalización del modelo.
+Se cargan las imágenes con image_dataset_from_directory y se les aplican transformaciones como escalado, zoom y volteo horizontal mediante capas de Keras, sobre el conjunto de entrenamiento. Esto mejora la capacidad de generalización del modelo.
 Las imágenes de prueba solo se escalan para mantener la consistencia.
 Se cargan las imágenes desde directorios específicos (training_set y test_set), y se asigna una etiqueta binaria (1 para perros y 0 para gatos).
 Construcción de la CNN:
@@ -25,27 +25,33 @@ Se muestra la predicción (ya sea "dog" o "cat").
 
 # Importación de las bibliotecas necesarias
 import tensorflow as tf
-from keras.preprocessing.image import ImageDataGenerator
 tf.__version__  # Verificar la versión de TensorFlow
 
 # Parte 1 - Preprocesamiento de los Datos
 
+# Reescalado y aumento de datos: en Keras 3 ya no son parámetros de
+# ImageDataGenerator (eliminado), sino capas que se aplican a cada lote
+rescale = tf.keras.layers.Rescaling(1./255)
+data_augmentation = tf.keras.Sequential([
+    tf.keras.layers.RandomShear(0.2),
+    tf.keras.layers.RandomZoom(0.2),
+    tf.keras.layers.RandomFlip('horizontal'),
+])
+
 # Preprocesamiento del conjunto de entrenamiento
-train_datagen = ImageDataGenerator(rescale = 1./255,
-                                   shear_range = 0.2,
-                                   zoom_range = 0.2,
-                                   horizontal_flip = True)
-training_set = train_datagen.flow_from_directory('dataset/training_set',
-                                                 target_size = (64, 64),
-                                                 batch_size = 32,
-                                                 class_mode = 'binary')
+training_set = tf.keras.utils.image_dataset_from_directory('dataset/training_set',
+                                                            image_size = (64, 64),
+                                                            batch_size = 32,
+                                                            label_mode = 'binary')
+class_names = training_set.class_names  # se guarda antes del aumento: un dataset ya mapeado no conserva class_names
+training_set = training_set.map(lambda x, y: (data_augmentation(rescale(x), training = True), y))
 
 # Preprocesamiento del conjunto de prueba
-test_datagen = ImageDataGenerator(rescale = 1./255)
-test_set = test_datagen.flow_from_directory('dataset/test_set',
-                                            target_size = (64, 64),
-                                            batch_size = 32,
-                                            class_mode = 'binary')
+test_set = tf.keras.utils.image_dataset_from_directory('dataset/test_set',
+                                                        image_size = (64, 64),
+                                                        batch_size = 32,
+                                                        label_mode = 'binary')
+test_set = test_set.map(lambda x, y: (rescale(x), y))
 
 # Parte 2 - Construcción de la CNN
 
@@ -96,8 +102,8 @@ test_image = np.expand_dims(test_image, axis = 0)
 # Realizar la predicción
 result = cnn.predict(test_image)
 
-# Ver los índices de las clases (gato o perro)
-training_set.class_indices
+# Ver los nombres de las clases (gato o perro)
+class_names
 
 # Asignar la predicción: 1 = perro, 0 = gato
 if result[0][0] == 1:
