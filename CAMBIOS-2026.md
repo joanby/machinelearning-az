@@ -194,7 +194,9 @@ queda — y se corrige el paso del eje del salario para que guarde la misma
 proporción con su rango que ya tenía el paso del eje de la edad. En la
 práctica: el paso del salario pasa de `0.25` a `500` (de `1` a `2000` en
 K-NN, que ya usaba un paso distinto de partida). La malla baja de 136
-millones de puntos a unos 68.000, y el gráfico que ves es visualmente
+millones de puntos a unos 68.000 en seis de las siete secciones — en K-NN,
+que partía de una malla distinta (~8,5 millones de puntos, no 136), baja a
+unas 4.300 —, y el gráfico que ves es visualmente
 equivalente al que la revisión de 2025 ya pretendía dibujar — mismos ejes,
 mismo rango, misma resolución aparente — solo que se calcula en segundos en
 vez de minutos, o de nunca. Se ha comprobado, además, que este cambio no
@@ -218,6 +220,14 @@ dibujo, nunca un número que se imprime por pantalla.
   esta actualización. Pero sí significa que **cada vez que lo ejecutes
   obtendrás un resultado ligeramente distinto**, y distinto también del que
   ves en el vídeo. Es el comportamiento esperado del fichero tal como está
+  escrito, no un error.
+- **`artificial_neural_network.py` (sección 39 — ANN).** Fija
+  `random_state = 0` en el `train_test_split`, pero no siembra TensorFlow:
+  la inicialización de los pesos de la red y el barajado de las 100 épocas
+  cambian en cada ejecución. El accuracy final **no coincide con el del
+  vídeo ni consigo mismo** de una ejecución a otra — el mismo caso que
+  `thompson_sampling.py`, justo arriba. Tampoco es un cambio de esta
+  actualización: es el comportamiento esperado del fichero tal como está
   escrito, no un error.
 
 ## Lo que NO se ha ejecutado

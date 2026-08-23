@@ -22,8 +22,11 @@ código Python vuelve a ejecutarse de principio a fin.
 - **No hay carpetas `original/` ni `update/`.** Esta rama es plana: lo que
   ves en cada `Part X` es directamente el código que necesitas.
 - **`original/` no ha desaparecido: vive en la rama [`master`](https://github.com/joanby/machinelearning-az/tree/master)**, junto con la revisión de enero de 2025. Si quieres ver el código exactamente como se grabó el vídeo, es ahí donde está.
-- **Los scripts en R no están en esta rama.** Siguen en `master`, sin
-  tocar — ver el aviso sobre R más abajo.
+- **Los 47 scripts en R sí están en esta rama**, en una carpeta `R/` junto
+  al Python de cada sección. No se han tocado — ni arreglados, ni
+  borrados, siguen tal cual estaban. 19 de ellos dependen de
+  `library(ElemStatLearn)`, archivado en CRAN desde 2020, así que fallarán
+  al ejecutarlos — ver el aviso sobre R más abajo.
 - `additional materials/` (las transparencias de teoría) se mantiene igual
   que en `master`.
 
@@ -113,7 +116,7 @@ No es necesario ser un experto en programación, solo es recomendable tener cono
 ---
 
 ## 🎁 **¡Bonus!**  
-Este curso incluye **todo el código en Python y R** que puedes descargar y aplicar a tus propios proyectos, así como ejemplos prácticos basados en datos reales. El código en R vive en la rama [`master`](https://github.com/joanby/machinelearning-az/tree/master).
+Este curso incluye **todo el código en Python y R** que puedes descargar y aplicar a tus propios proyectos, así como ejemplos prácticos basados en datos reales. El código en R está aquí mismo, en esta rama, sin tocar (19 de los 47 scripts dependen de `ElemStatLearn`, archivado en CRAN desde 2020, y no llegan a ejecutarse).
 
 ---
 
