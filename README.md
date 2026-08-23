@@ -2,25 +2,53 @@
 **Creado por** [Kirill Eremenko](https://www.udemy.com/user/kirilleremenko/) y [Hadelin de Ponteves](https://www.udemy.com/user/hadelin-de-ponteves/)  
 **Traducido al español por** [Juan Gabriel Gomila Salas](https://www.udemy.com/user/juangabriel2)  
 
-**Última actualización**: Enero de 2025
+**Última actualización**: Agosto de 2026
 
 ---
 
-## 📂 Estructura del Proyecto
+## 🆕 Esta es la rama `update-2026`
 
-En este repositorio encontrarás tres carpetas principales que te ayudarán a seguir el curso de la mejor manera:
+Estás en la versión del código **puesta al día y verificada en agosto de
+2026**, con Python 3.13 y las librerías tal como están hoy (numpy 2,
+scikit-learn 1.9, TensorFlow/Keras 3...). El curso se grabó en 2019 y
+algunas librerías han cambiado de comportamiento desde entonces; aquí el
+código Python vuelve a ejecutarse de principio a fin.
 
-1. **Additional Materials**: Transparencias y slides utilizados en las clases de teoría del curso.
-2. **Original**: Los ficheros originales en Python y R con los que se grabaron las clases del curso.
-3. **Update**: Los ficheros actualizados en **Python**, **Jupyter Notebook** y **R**, con mejoras realizadas en agosto de 2023. ¡Aquí está el código más reciente!
+**Qué encontrarás — y qué no — en esta rama:**
+
+- Aquí solo está el código **Python** (`.py` y `.ipynb`), puesto al día y en
+  la raíz del repositorio, organizado por partes del curso igual que
+  siempre (`Part 1 - Data Preprocessing`, `Part 2 - Regression`, etc.).
+- **No hay carpetas `original/` ni `update/`.** Esta rama es plana: lo que
+  ves en cada `Part X` es directamente el código que necesitas.
+- **`original/` no ha desaparecido: vive en la rama [`master`](https://github.com/joanby/machinelearning-az/tree/master)**, junto con la revisión de enero de 2025. Si quieres ver el código exactamente como se grabó el vídeo, es ahí donde está.
+- **Los scripts en R no están en esta rama.** Siguen en `master`, sin
+  tocar — ver el aviso sobre R más abajo.
+- `additional materials/` (las transparencias de teoría) se mantiene igual
+  que en `master`.
+
+**Qué ha cambiado exactamente y por qué:** todo está explicado, cambio a
+cambio y con el porqué de cada librería, en
+[`CAMBIOS-2026.md`](CAMBIOS-2026.md). Incluye también qué partes pueden
+verse distintas al vídeo, qué no se ha llegado a ejecutar (el entrenamiento
+completo de la CNN) y el aviso claro sobre el estado de R. Léelo antes de
+reportar como error algo que ya está documentado ahí.
 
 ---
 
-## 🚀 **¿Cómo aprovechar este repositorio?**
+## 🐍 Cómo montar el entorno
 
-Puedes combinar lo aprendido en los videos con el **código actualizado** para asegurar que estás trabajando siempre con las versiones más recientes. Además, si prefieres **trabajar online**, hemos preparado el código directamente en **Google Colab** para que puedas seguir el curso sin necesidad de instalar Python en tu ordenador.
+El curso usa un entorno conda. Con [Miniforge](https://github.com/conda-forge/miniforge) o Anaconda instalado:
 
-👉 **Accede a la carpeta de materiales de Colab [aquí](https://drive.google.com/drive/folders/1McMhzMVDRiZJI_jLjqqU1rBeHpwHq--A?usp=share_link)**
+```bash
+conda env create -f machinelearningaz.yml
+conda activate machinelearningaz
+```
+
+Esto te deja Python 3.13 con numpy, pandas, matplotlib, scikit-learn, scipy,
+nltk, xgboost, Jupyter, Spyder y (por pip) apyori y TensorFlow. Las
+versiones exactas con las que se ha verificado esta rama están en la tabla
+de [`CAMBIOS-2026.md`](CAMBIOS-2026.md#versiones-con-las-que-se-ha-verificado).
 
 ---
 
@@ -85,7 +113,7 @@ No es necesario ser un experto en programación, solo es recomendable tener cono
 ---
 
 ## 🎁 **¡Bonus!**  
-Este curso incluye **todo el código en Python y R** que puedes descargar y aplicar a tus propios proyectos, así como ejemplos prácticos basados en datos reales. 
+Este curso incluye **todo el código en Python y R** que puedes descargar y aplicar a tus propios proyectos, así como ejemplos prácticos basados en datos reales. El código en R vive en la rama [`master`](https://github.com/joanby/machinelearning-az/tree/master).
 
 ---
 
