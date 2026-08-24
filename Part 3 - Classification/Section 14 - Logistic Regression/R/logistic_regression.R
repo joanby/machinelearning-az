@@ -29,7 +29,7 @@ y_pred = ifelse(prob_pred > 0.5, 1, 0)
 cm = table(test_set[, 3], y_pred > 0.5)
 
 # Visualising the Training set results
-library(ElemStatLearn)
+# library(ElemStatLearn)
 set = training_set
 X1 = seq(min(set[, 1]) - 1, max(set[, 1]) + 1, by = 0.01)
 X2 = seq(min(set[, 2]) - 1, max(set[, 2]) + 1, by = 0.01)
@@ -46,7 +46,7 @@ points(grid_set, pch = '.', col = ifelse(y_grid == 1, 'dodgerblue', 'salmon'))
 points(set, pch = 21, bg = ifelse(set[, 3] == 1, 'dodgerblue3', 'salmon3'))
 
 # Visualising the Test set results
-library(ElemStatLearn)
+# library(ElemStatLearn)
 set = test_set
 X1 = seq(min(set[, 1]) - 1, max(set[, 1]) + 1, by = 0.01)
 X2 = seq(min(set[, 2]) - 1, max(set[, 2]) + 1, by = 0.01)
