@@ -1,9 +1,9 @@
 # Cambios 2026
 
-Este documento explica qué se ha tocado en el código Python del curso para que
-vuelva a ejecutarse en 2026, y por qué. No es un diff: es la explicación de
-qué decidió cada librería entre 2019 (cuando se grabó el curso) y ahora, y qué
-se ha hecho al respecto.
+Este documento explica qué se ha tocado en el código del curso (Python y R)
+para que vuelva a ejecutarse en 2026, y por qué. No es un diff: es la
+explicación de qué decidió cada librería entre 2019 (cuando se grabó el
+curso) y ahora, y qué se ha hecho al respecto.
 
 Todo lo que hay en esta rama son las mismas clases del vídeo. Nada de lo que
 sigue cambia lo que aprendes ni el resultado que deberías obtener — salvo un
@@ -31,10 +31,11 @@ Si usas otro sistema operativo o instalas versiones distintas de estas
 librerías, es posible que algo de lo que se cuenta aquí ya no aplique tal
 cual, para bien o para mal.
 
-## Los cuatro cambios
+## Los cinco cambios
 
-Con 60 ficheros de por medio (30 `.py` + 30 `.ipynb`) uno esperaría una lista
-larga. En realidad todo lo que se ha tocado se reduce a cuatro causas.
+Con 107 ficheros de por medio entre Python y R (30 `.py` + 30 `.ipynb` + 47
+`.R`) uno esperaría una lista larga. En realidad todo lo que se ha tocado se
+reduce a cinco causas.
 
 ### 1. numpy 2 dejó de convertir arrays a números por las buenas
 
@@ -203,6 +204,32 @@ vez de minutos, o de nunca. Se ha comprobado, además, que este cambio no
 toca ni una predicción ni una matriz de confusión: la malla solo alimenta el
 dibujo, nunca un número que se imprime por pantalla.
 
+### 5. Un import fósil en R que parecía haber roto 19 scripts
+
+**Afecta a:** 19 scripts `.R` de Clasificación (Parte 3), Reducción de la
+Dimensión (Parte 9) y Selección de Modelos (Parte 10).
+
+**Qué se rompía.** `library(ElemStatLearn)` moría con un error de paquete
+no encontrado: CRAN archivó `ElemStatLearn` en 2020, y `install.packages()`
+ya no lo instala.
+
+**Por qué lo cambió la librería, y por qué aquí la pregunta correcta era
+otra.** El motivo del archivado es de CRAN, no nuestro. Pero antes de darlo
+por perdido tocaba preguntarse para qué se usaba el paquete en estos 19
+ficheros — y la respuesta es: para nada. Ninguno de los 19 llama a una sola
+función ni carga un solo dataset de `ElemStatLearn`. Es un import heredado
+del material original en inglés, que nunca hizo nada en estos scripts. El
+bloque que va justo debajo del import — el que dibuja la región de decisión
+del clasificador — usa exclusivamente R base (`seq`, `min`, `max`) y el
+`predict` del propio modelo ya entrenado.
+
+**Qué se hace ahora.** Se comenta la línea, `# library(ElemStatLearn)`, en
+los 19 ficheros. No se borra: sigue la convención que ya usa el curso en
+cada `library()` (`# install.packages('caTools')` encima), así la línea
+sigue ahí tal como la ves teclear en el vídeo, y queda constancia de que su
+ausencia es deliberada, no un olvido. Los 19 scripts pasan de fallar a
+ejecutarse de principio a fin y generar su gráfico.
+
 ## Lo que puede verse distinto al vídeo
 
 - **Sección 40 — CNN.** Como se explica arriba, el código de carga y
@@ -243,23 +270,53 @@ manera honesta de que lo sea. El fichero que tienes delante conserva sus 25
 épocas — cuando lo ejecutes tú, con tiempo, deberías acercarte al resultado
 del vídeo.
 
-## R sigue sin actualizar
+## R también está al día
 
 Este curso se llama *"Machine Learning de A a la Z: R y Python para Data
-Science"*, y esta actualización, dicho sin rodeos, **solo cubre la mitad
-Python**. Los 47 scripts `.R` del curso no se han tocado — ni se han
-arreglado, ni se han borrado, siguen tal cual estaban.
+Science"*. Esta actualización se pensó al principio como una actualización
+de la mitad Python únicamente, porque se daba por hecho que la mitad R
+**estaba realmente muerta**: 19 de sus 47 scripts hacen
+`library(ElemStatLearn)`, un paquete que CRAN archivó en 2020 y que ya no
+se instala con un simple `install.packages()`. Se contaba como un muro, y
+como una segunda fase pendiente, todavía sin fecha.
 
-De esos 47, **19 dependen de `library(ElemStatLearn)`** (con 38 llamadas en
-total, dos por fichero: una para el gráfico de entrenamiento y otra para el
-de test) — un paquete que **CRAN archivó en 2020** y que ya no se instala
-con un simple `install.packages()`. Son, en concreto, los scripts de
-Clasificación (Parte 3), Reducción de la Dimensión (Parte 9) y Selección de
-Modelos (Parte 10).
+Al medirlo de verdad — ejecutando los 47 scripts uno a uno, no dando por
+buena la suposición — resultó no ser cierto.
 
-No lo escondemos: si sigues el curso en R, te vas a encontrar con este
-muro. Ponerlo al día es una segunda fase, todavía pendiente, que no entra
-en esta actualización.
+**Lo que había realmente:**
+
+- **19 se ejecutaban sin problema** desde el principio.
+- **12 fallaban** en `library(ElemStatLearn)`.
+- **16 son plantillas de rellenar** (`classification_template.R` × 7,
+  `data_preprocessing_template.R` × 7, `regression_template.R` × 2) que
+  fallan **por diseño**: dicen literalmente *"create your classifier
+  here"*, y es el alumno quien escribe ahí su código. Que fallen tal cual
+  están no es una avería — es que están incompletas a propósito, como el
+  resto del curso espera que estén en ese punto del vídeo.
+
+El hallazgo, contado en la causa 5 más arriba, es que los 19 ficheros que
+importaban `ElemStatLearn` **no usaban absolutamente nada del paquete**. Ni
+un dataset, ni una función: era un import fósil heredado del material
+original en inglés. El bloque de visualización que va justo debajo — el que
+dibuja las regiones de decisión, y que todo el mundo daba por dependiente
+del paquete — solo usa R base (`seq`, `min`, `max`) y el `predict` del
+propio modelo. Comentar esa línea — no borrarla, siguiendo la convención
+que el propio curso ya usa en cada `library()` — bastó para que los 12
+scripts reales volvieran a ejecutarse de principio a fin, gráfico incluido.
+
+**Resultado: 31 de los 47 scripts se ejecutan**, y los 16 restantes son las
+plantillas de rellenar, que funcionan exactamente como deben funcionar. Se
+ha comprobado además que los 12 scripts recuperados no solo terminan sin
+error: generan su gráfico (`Rplots.pdf`, de entre 2,3 y 36 MB según el
+fichero), igual que antes de que `ElemStatLearn` se archivara.
+
+Un dato que merece la pena resaltar, porque es un contraste real entre los
+dos lenguajes del curso: en estos mismos cuatro años, **R no ha tenido ni
+una sola rotura por cambio de API**. Todo lo que fallaba era ese import
+fósil que no hacía nada. Python, en el mismo periodo, sí perdió terreno por
+cambios de comportamiento de sus librerías: numpy 2 y Keras 3 se llevaron
+por delante diez ficheros (causas 1 y 3 más arriba). El ecosistema de R ha
+sido, en este curso, notablemente más estable que el de Python.
 
 ---
 

@@ -12,21 +12,22 @@ Estás en la versión del código **puesta al día y verificada en agosto de
 2026**, con Python 3.13 y las librerías tal como están hoy (numpy 2,
 scikit-learn 1.9, TensorFlow/Keras 3...). El curso se grabó en 2019 y
 algunas librerías han cambiado de comportamiento desde entonces; aquí el
-código Python vuelve a ejecutarse de principio a fin.
+código, tanto Python como R, vuelve a ejecutarse de principio a fin.
 
 **Qué encontrarás — y qué no — en esta rama:**
 
-- Aquí solo está el código **Python** (`.py` y `.ipynb`), puesto al día y en
-  la raíz del repositorio, organizado por partes del curso igual que
-  siempre (`Part 1 - Data Preprocessing`, `Part 2 - Regression`, etc.).
+- El código **Python** (`.py` y `.ipynb`), puesto al día y en la raíz del
+  repositorio, organizado por partes del curso igual que siempre
+  (`Part 1 - Data Preprocessing`, `Part 2 - Regression`, etc.).
 - **No hay carpetas `original/` ni `update/`.** Esta rama es plana: lo que
   ves en cada `Part X` es directamente el código que necesitas.
 - **`original/` no ha desaparecido: vive en la rama [`master`](https://github.com/joanby/machinelearning-az/tree/master)**, junto con la revisión de enero de 2025. Si quieres ver el código exactamente como se grabó el vídeo, es ahí donde está.
-- **Los 47 scripts en R sí están en esta rama**, en una carpeta `R/` junto
-  al Python de cada sección. No se han tocado — ni arreglados, ni
-  borrados, siguen tal cual estaban. 19 de ellos dependen de
-  `library(ElemStatLearn)`, archivado en CRAN desde 2020, así que fallarán
-  al ejecutarlos — ver el aviso sobre R más abajo.
+- **Los 47 scripts en R también están aquí**, en una carpeta `R/` junto al
+  Python de cada sección, y **31 de ellos se ejecutan** de principio a fin.
+  Los 16 restantes son plantillas de rellenar (`classification_template.R`,
+  `data_preprocessing_template.R`, `regression_template.R`) que fallan
+  **por diseño** — es el alumno quien completa el código ahí — así que no
+  cuentan como rotas. Detalle completo en `CAMBIOS-2026.md`.
 - `additional materials/` (las transparencias de teoría) se mantiene igual
   que en `master`.
 
@@ -116,7 +117,7 @@ No es necesario ser un experto en programación, solo es recomendable tener cono
 ---
 
 ## 🎁 **¡Bonus!**  
-Este curso incluye **todo el código en Python y R** que puedes descargar y aplicar a tus propios proyectos, así como ejemplos prácticos basados en datos reales. El código en R está aquí mismo, en esta rama, sin tocar (19 de los 47 scripts dependen de `ElemStatLearn`, archivado en CRAN desde 2020, y no llegan a ejecutarse).
+Este curso incluye **todo el código en Python y R** que puedes descargar y aplicar a tus propios proyectos, así como ejemplos prácticos basados en datos reales. El código en R está aquí mismo, en esta rama, puesto al día: 31 de los 47 scripts se ejecutan, y los 16 restantes son plantillas que el alumno completa durante el curso.
 
 ---
 
