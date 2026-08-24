@@ -2,8 +2,6 @@
 **Creado por** [Kirill Eremenko](https://www.udemy.com/user/kirilleremenko/) y [Hadelin de Ponteves](https://www.udemy.com/user/hadelin-de-ponteves/)  
 **Traducido al español por** [Juan Gabriel Gomila Salas](https://www.udemy.com/user/juangabriel2)  
 
-**Última actualización**: Enero de 2025
-
 > ### 🆕 ¿Vienes en 2026? El código actualizado está en la rama [`update-2026`](https://github.com/joanby/machinelearning-az/tree/update-2026)
 >
 > Esta rama `master` conserva el código **tal y como se grabó el curso**. Si las librerías han
