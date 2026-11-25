@@ -2,7 +2,7 @@
 **Creado por** [Kirill Eremenko](https://www.udemy.com/user/kirilleremenko/) y [Hadelin de Ponteves](https://www.udemy.com/user/hadelin-de-ponteves/)  
 **Traducido al español por** [Juan Gabriel Gomila Salas](https://www.udemy.com/user/juangabriel2)  
 
-**Última actualización**: Agosto de 2026
+**Última actualización**: Noviembre de 2026
 
 ---
 
@@ -13,6 +13,12 @@ Estás en la versión del código **puesta al día y verificada en agosto de
 scikit-learn 1.9, TensorFlow/Keras 3...). El curso se grabó en 2019 y
 algunas librerías han cambiado de comportamiento desde entonces; aquí el
 código, tanto Python como R, vuelve a ejecutarse de principio a fin.
+
+**Ojo si sigues el curso en Python:** el código, y parte de los datos, ya no
+son exactamente los que ves en el vídeo (CSV con menos columnas, dos
+secciones con otro dataset, algunos parámetros distintos). La lista está en
+[`CAMBIOS-2026.md`](CAMBIOS-2026.md#lo-que-puede-verse-distinto-al-vídeo):
+mira el vídeo para entender y escribe lo que hay en esta rama.
 
 **Qué encontrarás — y qué no — en esta rama:**
 
@@ -50,7 +56,7 @@ conda activate machinelearningaz
 ```
 
 Esto te deja Python 3.13 con numpy, pandas, matplotlib, scikit-learn, scipy,
-nltk, xgboost, Jupyter, Spyder y (por pip) apyori y TensorFlow. Las
+nltk, xgboost, statsmodels, Jupyter, Spyder y (por pip) apyori y TensorFlow. Las
 versiones exactas con las que se ha verificado esta rama están en la tabla
 de [`CAMBIOS-2026.md`](CAMBIOS-2026.md#versiones-con-las-que-se-ha-verificado).
 

@@ -97,7 +97,8 @@ test_image = image.load_img('dataset/test_image/Hadelin_Dog.jpg', target_size = 
 test_image = image.img_to_array(test_image)
 
 # Ampliar las dimensiones para que se ajuste al formato de entrada de la CNN
-test_image = np.expand_dims(test_image, axis = 0)
+# y reescalar a [0, 1], igual que las imágenes con las que se entrenó
+test_image = np.expand_dims(test_image, axis = 0) / 255.0
 
 # Realizar la predicción
 result = cnn.predict(test_image)
@@ -105,8 +106,8 @@ result = cnn.predict(test_image)
 # Ver los nombres de las clases (gato o perro)
 class_names
 
-# Asignar la predicción: 1 = perro, 0 = gato
-if result[0][0] == 1:
+# Asignar la predicción: la salida es la probabilidad de perro (1 = perro, 0 = gato)
+if result[0][0] > 0.5:
     prediction = 'dog'
 else:
     prediction = 'cat'

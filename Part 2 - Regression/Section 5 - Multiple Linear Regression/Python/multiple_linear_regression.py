@@ -73,3 +73,35 @@ plt.ylabel('Beneficios')
 plt.legend()
 plt.grid()
 plt.show()
+
+# 7. Construir el modelo óptimo con eliminación hacia atrás (statsmodels)
+# Es la parte del vídeo que faltaba en esta rama. statsmodels da los p-valores de cada variable.
+# Necesita su propia X: las 3 dummies de arriba más la columna de unos son colineales,
+# así que aquí se quita la primera dummy con drop='first'. Así los índices son los del vídeo:
+# 0 = término independiente, 1-2 = dummies de State, 3 = R&D, 4 = Administration, 5 = Marketing.
+import statsmodels.api as sm
+
+ct_opt = ColumnTransformer(transformers=[('encoder', OneHotEncoder(drop='first'), [3])], remainder='passthrough')
+X_sm = np.array(ct_opt.fit_transform(dataset.iloc[:, :-1].values), dtype=float)
+X_sm = np.append(arr = np.ones((50, 1)).astype(int), values = X_sm, axis = 1)
+
+# Nivel de significación: SL = 0.05. En cada paso se quita la variable con el p-valor más alto.
+X_opt = X_sm[:, [0, 1, 2, 3, 4, 5]]
+regressor_OLS = sm.OLS(endog = y, exog = X_opt).fit()
+print(regressor_OLS.summary())
+
+X_opt = X_sm[:, [0, 1, 3, 4, 5]]
+regressor_OLS = sm.OLS(endog = y, exog = X_opt).fit()
+print(regressor_OLS.summary())
+
+X_opt = X_sm[:, [0, 3, 4, 5]]
+regressor_OLS = sm.OLS(endog = y, exog = X_opt).fit()
+print(regressor_OLS.summary())
+
+X_opt = X_sm[:, [0, 3, 5]]
+regressor_OLS = sm.OLS(endog = y, exog = X_opt).fit()
+print(regressor_OLS.summary())
+
+X_opt = X_sm[:, [0, 3]]
+regressor_OLS = sm.OLS(endog = y, exog = X_opt).fit()
+print(regressor_OLS.summary())

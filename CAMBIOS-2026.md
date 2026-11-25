@@ -5,9 +5,16 @@ para que vuelva a ejecutarse en 2026, y por qué. No es un diff: es la
 explicación de qué decidió cada librería entre 2019 (cuando se grabó el
 curso) y ahora, y qué se ha hecho al respecto.
 
-Todo lo que hay en esta rama son las mismas clases del vídeo. Nada de lo que
-sigue cambia lo que aprendes ni el resultado que deberías obtener — salvo un
-caso, marcado bien claro más abajo, donde sí cambia y se dice por qué.
+Lo que aprendes es lo mismo que en el vídeo, pero **en Python el código, y
+parte de los datos, ya no son exactamente los que ves teclear**. Algunas
+diferencias vienen de esta actualización y la mayoría, de revisiones
+anteriores del código (la carpeta `update/` de `master`): CSV con menos
+columnas, dos secciones que usan otro dataset y algunos parámetros que el
+vídeo no pone. Están todas juntas más abajo, en
+[«Lo que puede verse distinto al vídeo»](#lo-que-puede-verse-distinto-al-vídeo),
+y el curso trae una clase con la tabla de equivalencias entre el vídeo y
+esta rama. La regla para seguirlo: **mira el vídeo para entender y escribe
+lo que hay en esta rama**. En R los cambios son mínimos (causa 5).
 
 ## Versiones con las que se ha verificado
 
@@ -26,6 +33,7 @@ Verificado en **agosto de 2026**, en **macOS con Apple Silicon**:
 | apyori | 1.1.2 |
 | tensorflow | 2.21.0 |
 | keras | 3.15.1 |
+| statsmodels | 0.15.0 (añadido en noviembre de 2026) |
 
 Si usas otro sistema operativo o instalas versiones distintas de estas
 librerías, es posible que algo de lo que se cuenta aquí ya no aplique tal
@@ -92,9 +100,9 @@ la función.
 ### 3. Keras 3 se llevó por delante `ImageDataGenerator` — y con él, una forma entera de hacer las cosas
 
 **Afecta a:** `convolutional_neural_network` (`.py` y `.ipynb`, sección 40,
-Parte 8 — Deep Learning). Es el único cambio de las cuatro donde el código
-deja de parecerse línea a línea a lo que ves en el vídeo, así que merece la
-explicación larga.
+Parte 8 — Deep Learning). Es la única de las cinco causas donde esta
+actualización hace que el código deje de parecerse línea a línea a lo que
+ves en el vídeo, así que merece la explicación larga.
 
 **Qué se rompía.**
 `from keras.preprocessing.image import ImageDataGenerator` moría directamente
@@ -137,9 +145,11 @@ es la única sección donde el mínimo cambio no era una línea, sino esto:
   vídeo.
 - `class_indices` (un diccionario) pasa a ser `class_names` (una lista): el
   nuevo pipeline no expone el diccionario de siempre.
-- El resto del fichero —la CNN en sí, su compilación, el entrenamiento con
-  `epochs = 25`, y la predicción sobre una imagen suelta— es idéntico al
-  vídeo. Ahí no hay nada que Keras 3 haya tocado.
+- El resto del fichero —la CNN en sí, su compilación y el entrenamiento con
+  `epochs = 25`— es el del vídeo. Ahí no hay nada que Keras 3 haya tocado.
+  La predicción sobre una imagen suelta sí se corrigió en noviembre de 2026,
+  por un fallo del código del curso, no por Keras: está contado más abajo, en
+  «Revisión de noviembre de 2026».
 
 Dos valores del aumento de datos no tienen un equivalente exacto entre la
 clase vieja y las capas nuevas — se ha mantenido el número que pide el
@@ -230,11 +240,95 @@ sigue ahí tal como la ves teclear en el vídeo, y queda constancia de que su
 ausencia es deliberada, no un olvido. Los 19 scripts pasan de fallar a
 ejecutarse de principio a fin y generar su gráfico.
 
+## Revisión de noviembre de 2026
+
+En noviembre se repasó la rama contra los vídeos, uno a uno, y aparecieron
+dos cosas más. Ninguna la rompió una librería: son huecos del propio código
+del curso.
+
+### La eliminación hacia atrás de la regresión lineal múltiple no estaba
+
+**Afecta a:** `multiple_linear_regression` (`.py` y `.ipynb`, sección 5,
+Parte 2 — Regresión) y a `machinelearningaz.yml`.
+
+**Qué faltaba.** En el vídeo, después de entrenar el modelo, se construye
+el modelo óptimo con eliminación hacia atrás: `statsmodels` da el p-valor
+de cada variable y se van quitando, de una en una, las que pasan del nivel
+de significación del 5 %. Ese código no estaba en ningún fichero de la
+rama, y `statsmodels` tampoco estaba en el entorno, así que quien seguía el
+vídeo no tenía con qué hacerlo.
+
+**Qué se hace ahora.** `statsmodels` entra en el `machinelearningaz.yml` y
+el bloque se añade al final del `.py` y del `.ipynb`, con
+`import statsmodels.api as sm` (el código de 2019 importaba
+`statsmodels.formula.api`, que hoy ya no trae `OLS`). El bloque lleva su propia matriz `X`, por un
+motivo: la regresión de arriba codifica `State` con sus 3 dummies, y 3
+dummies más la columna de unos que necesita `statsmodels` son colineales —
+la trampa de las variables ficticias. El vídeo lo evitaba quitando una
+dummy a mano (`X = X[:, 1:]`); aquí se vuelve a codificar con
+`OneHotEncoder(drop='first')`, que hace lo mismo. Así los índices son los
+del vídeo (`[0, 1, 2, 3, 4, 5]`, `[0, 1, 3, 4, 5]`, `[0, 3, 4, 5]`,
+`[0, 3, 5]` y `[0, 3]`) y salen sus p-valores: Administration, 0,602 en el
+tercer paso, y Marketing, 0,060 en el cuarto.
+
+Si ya tenías el entorno creado, no hace falta rehacerlo:
+`conda install -n machinelearningaz -c conda-forge statsmodels`.
+
+### La predicción de una imagen suelta en la CNN no reescalaba la imagen
+
+**Afecta a:** `convolutional_neural_network` (`.py` y `.ipynb`, sección 40,
+Parte 8 — Deep Learning).
+
+**Qué fallaba.** La red se entrena con imágenes reescaladas a valores entre
+0 y 1 (`Rescaling(1./255)`), pero la imagen suelta del final le llegaba sin
+reescalar, con valores de 0 a 255. Con entradas 255 veces más grandes de lo
+que conoce, la salida sigmoide se satura y muchas veces vale exactamente 1
+o 0. Por eso `if result[0][0] == 1` parecía funcionar, pero la red estaba
+decidiendo con números que nunca había visto al entrenar. No da ningún
+error: simplemente acierta menos.
+
+**Qué se hace ahora.** Dos líneas:
+`test_image = np.expand_dims(test_image, axis = 0) / 255.0` y
+`if result[0][0] > 0.5:`. La salida de la red es la probabilidad de que la
+foto sea de un perro, y se decide por encima o por debajo de 0,5.
+Comprobado con un entrenamiento corto (3 épocas) y las 2.000 imágenes de
+test pasadas una a una: sin reescalar acierta el 68,0 % (y en el 59,7 % de
+ellas la salida es exactamente 1); corregido, el 73,6 %, en línea con lo que
+da `evaluate` sobre el conjunto de test con ese mismo modelo (73,3 %).
+
 ## Lo que puede verse distinto al vídeo
 
 - **Sección 40 — CNN.** Como se explica arriba, el código de carga y
-  aumento de datos es nuevo. La arquitectura de la red, su entrenamiento y
-  la predicción final son los mismos del vídeo.
+  aumento de datos es nuevo, y la imagen suelta ahora se divide entre 255
+  y se compara con `> 0.5`. La arquitectura de la red es la del vídeo.
+  Cada época, en cambio, es más corta: el vídeo hace `steps_per_epoch=8000`
+  lotes de 32 (256.000 imágenes por época) y la rama recorre las 8.000
+  imágenes una vez. No esperes el accuracy de entrenamiento del vídeo.
+- **Sección 5 — Regresión lineal múltiple.** La rama se queda con las 3
+  dummies de `State`; el vídeo quita una con `X = X[:, 1:]`. A
+  `LinearRegression` le da igual (las predicciones son las mismas), pero
+  la eliminación hacia atrás necesita quitarla: por eso su bloque usa
+  `OneHotEncoder(drop='first')`, como se cuenta arriba.
+- **Parte 3 — Clasificación y sección 48 — Selección de modelos.** En
+  Python, `Social_Network_Ads.csv` solo trae 3 columnas (`Age`,
+  `EstimatedSalary` y `Purchased`), así que el `iloc[:, [2, 3]]` del vídeo
+  da `IndexError`. El código usa `iloc[:, :-1]` para `X` e `iloc[:, -1]`
+  para `y`. En R el CSV sigue teniendo sus 5 columnas.
+- **Sección 45 — Kernel ACP.** En Python, `kernel_pca.py` usa `Wine.csv`,
+  no el `Social_Network_Ads.csv` del vídeo, así que los resultados no se
+  parecen. R sí usa el del vídeo.
+- **Sección 49 — XGBoost.** En Python, `xg_boost.py` usa `Data.csv` (datos
+  de tumores de mama, con la columna `Class`), no el `Churn_Modelling.csv`
+  del vídeo. R sí usa el del vídeo.
+- **Sección 28 — Apriori.** `apriori.py` añade `max_length = 2`, que el
+  vídeo no pone: solo salen reglas de dos productos. `eclat.py`, que en el
+  vídeo solo existe en R, hace lo mismo.
+- **Sección 36 — NLP.** El código quita `'not'` de la lista de stopwords
+  (`all_stopwords.remove('not')`) antes de limpiar las reseñas, así que
+  «not» se conserva. El vídeo usa la lista entera y lo borra.
+- **Sección 39 — ANN.** La red tiene 12 entradas y no 11, porque se quedan
+  las 3 dummies de `Geography` (el vídeo quita una con `X = X[:, 1:]`), y
+  entrena con `batch_size = 32` en vez del `batch_size = 10` del vídeo.
 - **Sección 24 — K-Means, el codo.** `KMeans` cambió el valor por defecto
   de `n_init` (cuántas veces prueba distintos puntos de partida antes de
   quedarse con el mejor) de `10` a `'auto'`, que equivale a solo 1 intento.
@@ -267,8 +361,10 @@ principio a fin sin errores — la CNN se entrena, sí, pero muy poco. El
 accuracy que da esa prueba (en torno al 58-64% según el fichero) **no es el
 accuracy del vídeo y no se presenta como tal**: con una sola época no hay
 manera honesta de que lo sea. El fichero que tienes delante conserva sus 25
-épocas — cuando lo ejecutes tú, con tiempo, deberías acercarte al resultado
-del vídeo.
+épocas — cuando lo ejecutes tú, con tiempo, la red se entrenará de verdad,
+pero no esperes el accuracy de entrenamiento del vídeo: cada época es más
+corta que la suya, como se cuenta arriba. La corrección de la imagen suelta
+(noviembre de 2026) se comprobó con 3 épocas, no con las 25.
 
 ## R también está al día
 
